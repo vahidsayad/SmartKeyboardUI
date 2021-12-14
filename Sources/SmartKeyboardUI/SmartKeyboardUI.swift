@@ -26,7 +26,7 @@ public struct SmartKeyboardUI: ViewModifier {
 }
 
 extension View {
-    func smartKeyboardUI() -> some View {
+    public func smartKeyboardUI() -> some View {
         ModifiedContent(content: self, modifier: SmartKeyboardUI())
     }
 }
