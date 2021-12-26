@@ -34,7 +34,7 @@ public struct SmartKeyboardUI: ViewModifier {
 }
 
 extension View {
-    public func smartKeyboardUI() -> some View {
-        ModifiedContent(content: self, modifier: SmartKeyboardUI())
+    public func smartKeyboardUI(useGeometety: Bool = true) -> some View {
+        ModifiedContent(content: self, modifier: SmartKeyboardUI(useGeometety: useGeometety))
     }
 }
