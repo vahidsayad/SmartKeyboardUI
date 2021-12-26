@@ -28,9 +28,6 @@ public struct SmartKeyboardUI: ViewModifier {
                 .animation(.easeOut(duration: 0.16))
         }
     }
-    
-    public init() {
-    }
 }
 
 extension View {
