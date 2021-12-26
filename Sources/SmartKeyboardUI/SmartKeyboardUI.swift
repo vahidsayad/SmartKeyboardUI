@@ -7,15 +7,23 @@ import Combine
 public struct SmartKeyboardUI: ViewModifier {
 
     @State private var bottomPadding: CGFloat = 0
+    var useGeometety = true
     
     public func body(content: Content) -> some View {
         GeometryReader { geometry in
             content
                 .padding(.bottom, self.bottomPadding)
                 .onReceive(Publishers.keyboardHeight) { keyboardHeight in
-                    let keyboardTop = geometry.frame(in: .global).height - keyboardHeight
-                    let focusedTextInputBottom = UIResponder.currentFirstResponder?.globalFrame?.maxY ?? 0
-                    self.bottomPadding = max(0, focusedTextInputBottom - keyboardTop - geometry.safeAreaInsets.bottom)
+                    if useGeometety {
+                        let keyboardTop = geometry.frame(in: .global).height - keyboardHeight
+                        let focusedTextInputBottom = UIResponder.currentFirstResponder?.globalFrame?.maxY ?? 0
+                        self.bottomPadding = max(0, focusedTextInputBottom - keyboardTop - geometry.safeAreaInsets.bottom)
+                    } else {
+                        let screenHeight = UIScreen.main.bounds.size.height
+                        let keyboardTop = screenHeight - keyboardHeight
+                        let focusedTextInputBottom = UIResponder.currentFirstResponder?.globalFrame?.maxY ?? 0
+                        self.bottomPadding = max(0, focusedTextInputBottom - keyboardTop - screenHeight)
+                    }
                 }
                 .animation(.easeOut(duration: 0.16))
         }
