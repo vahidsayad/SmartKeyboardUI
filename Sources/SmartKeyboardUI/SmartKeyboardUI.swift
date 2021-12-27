@@ -22,7 +22,7 @@ public struct SmartKeyboardUI: ViewModifier {
                         let screenHeight = UIScreen.main.bounds.size.height
                         let keyboardTop = screenHeight - keyboardHeight
                         let focusedTextInputBottom = UIResponder.currentFirstResponder?.globalFrame?.maxY ?? 0
-                        self.bottomPadding = max(0, focusedTextInputBottom - keyboardTop - screenHeight)
+                        self.bottomPadding = max(0, focusedTextInputBottom - keyboardTop - geometry.safeAreaInsets.bottom)
                     }
                 }
                 .animation(.easeOut(duration: 0.16))
