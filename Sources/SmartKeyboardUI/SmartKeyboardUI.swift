@@ -17,7 +17,7 @@ public struct SmartKeyboardUI: ViewModifier {
                     if useGeometety {
                         let keyboardTop = geometry.frame(in: .global).height - keyboardHeight
                         let focusedTextInputBottom = UIResponder.currentFirstResponder?.globalFrame?.maxY ?? 0
-                        self.bottomPadding = max(0, focusedTextInputBottom - keyboardTop - geometry.safeAreaInsets.bottom)
+                        self.bottomPadding = max(0, focusedTextInputBottom - keyboardTop - 30)
                     } else {
                         let screenHeight = UIScreen.main.bounds.size.height
                         let keyboardTop = screenHeight - keyboardHeight
